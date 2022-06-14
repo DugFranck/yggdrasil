@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block javascript %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block title %}Paiement de ma commande - Yggdrasil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Mon récapitulatif</h2>
+        <p>Vérifiez vos informations avant de payer votre commande.</p>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+
+                <strong>Mon adresse de livraison</strong><br />
+                <div class="form-check mt-4">
+                    {{ delivery|raw }}
+                </div>
+                <hr>
+                <strong>Mon transporteur</strong><br />
+                <div class="form-check">
+                    {{ carrier.name }}<br />
+                    {{ carrier.description }}<br />
+                    {{ (priceSending[0].price / 100)|number_format(2,',', '.')}} €
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="text-center">
+                    <b>Ma commande</b><br />
+
+                </div>
+                <div class="order-summary">
+
+
+                    {% for key,item in cart.items %}
+                        <div class="row {% if key > 0  %}mt-2{% endif %}">
+                            <div class="col-2">
+                                <img src="/uploads/{{ item.productDimensionStock.product.illustration }}" alt="{{ item.productDimensionStock.product.name }}" class="img-fluid" width="120px">
+
+                            </div>
+                            <div class="col-8 my-auto">
+                                <h5 class="mt-0 mb-0">{{ item.productDimensionStock.product.name }}</h5>
+                                <h4 class="mt-0 mb-0">{{ item.productDimensionStock.dimension }}</h4>
+                                <h6 class="mt-0 mb-0">{{ item.productDimensionStock.product.subtitle }}</h6>
+                                x {{ item.quantity }}
+                            </div>
+                            <div class="col-2 my-auto">
+                                <b>{{ (item.productDimensionStock.product.price * item.quantity / 100)|number_format(2,',', '.') }} €</b>
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+                </div>
+                <hr>
+
+                   <strong> Sous-Total : {{ (cart.total / 100)|number_format(2,',', '.')}} € </strong><br />
+                    <strong>Livraison : {{ (priceSending[0].price / 100)|number_format(2,',', '.')}} €</strong>
+                    <hr>
+                <strong>Total : {{ ((cart.total  + priceSending[0].price) / 100) |number_format(2,',', '.') }} €</strong>
+                <form action="/commande/create-session/{{ reference }}" method="POST">
+                    <button type="submit"  class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ ((cart.total  + priceSending[0].price) / 100) |number_format(2,',', '.') }} €</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

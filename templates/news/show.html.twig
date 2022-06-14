@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ news.title }} - l'Atelier Yggdrasil{% endblock %}
+
+{% block content %}
+    </div>
+    <div class="hero-wrap hero-bread" style="background-image: url({{ asset('assets/images/bando2.png') }});margin-top: -10px;">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="  {{ path('home') }}">Home</a></span> <span>News</span></p>
+                    <h1 class="mb-0 bread">Mes nouvelles</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="ftco-section ftco-degree-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-12 ftco-animate">
+                    <h2 class="mb-3">{{ news.title }} <strong>{{ news.createdAt|date('d-m-y H:i') }}</strong></h2>
+                    <p>{{ news.content }}</p>
+                    <p>
+                        <img src="/uploads/{{ news.illustration }}" alt="{{ news.title }}" class="img-fluid">
+                    </p>
+
+                </div>
+
+
+
+
+               <!-- .col-md-8 -->
+
+
+            </div>
+        </div>
+    </section> <!-- .section -->
+{% endblock %}

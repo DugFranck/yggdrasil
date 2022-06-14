@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Mon panier</h1>
+    <div class="container mt-4">
+
+        {% if cart.items.count > 0 %}
+            <div class="row mt-4">
+                <!-- List of items -->
+                <div class="col-md-8">
+
+                    <div class="card">
+                        <div class="card-header bg-dark text-white d-flex">
+                            <h5 class="card-header bg-dark text-white">Articles</h5>
+                            <div class="ml-auto">
+
+                            </div>
+                        </div>
+
+                        <ul class="list-group list-group-flush">
+
+                            {% for item in form.items %}
+
+                                <li class="list-group-item d-flex">
+                                    <div class="flex-fill mr-2">
+                                        <img src="/uploads/{{ item.vars.data.productDimensionStock.product.illustration }}" alt="{{ item.vars.data.productDimensionStock.product.name }}" class="img-fluid" width="120px">
+                                    </div>
+                                    <div class="flex-fill mr-2">
+                                        <h5 class="mt-0 mb-0">{{ item.vars.data.productDimensionStock.product.name }}</h5>
+                                        <h4 class="mt-0 mb-0">{{ item.vars.data.productDimensionStock.dimension }}</h4>
+                                        <small>{{ item.vars.data.productDimensionStock.product.description[:50] }}...</small>
+                                        <h6>
+                                            Quantité :
+                                            <a href="{{ path('cart_product_less',{'id' : item.vars.data.id}) }}">
+                                            <img src="{{ asset('assets/images/moins.png') }}" height="12px" alt="Supprimer mon produit">
+                                            </a>
+                                                x {{ item.vars.data.quantity }}
+                                        <a href="{{ path('cart_product_add',{'id' : item.vars.data.id}) }}">
+                                        <img src="{{ asset('assets/images/plus.png') }}" height="12px" alt="Ajouter mon produit">
+                                        </a>
+                                        </h6>
+
+                                      
+                                    </div>
+                                    <div class="flex-fill mr-2 text-right">
+                                        <b>{{ (item.vars.data.productDimensionStock.product.price / 100)|number_format(2,',', '.') }} €</b>
+                                        <br />
+                                        <a href="{{ path('cart_product_delete',{'id': item.vars.data.id}) }}">
+                                            <img src="{{ asset('assets/images/trash.png') }}" height="20px" alt="supprimer">
+                                        </a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-4 mt-md-0">
+                        <h5 class="card-header bg-dark text-white">Résumé</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div><b>Total</b></div>
+                                <span><b>{{ (cart.total / 100)|number_format(2,',', '.')}} €</b></span>
+                                <span><b>{{ cart.totalPoids }} g</b></span>
+                            </li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="{{ path('command') }}" class="btn btn-warning w-100">Valider mon panier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                Votre panier est vide. Aller à la <a href="{{ path('products') }}">Liste de produits</a>.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

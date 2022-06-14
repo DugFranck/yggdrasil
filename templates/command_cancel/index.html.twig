@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur de paiement - l'Atelier Yggdrasil{% endblock %}
+
+{% block content %}
+    <h2>Erreur de paiemant</h2>
+    <p>
+        Bonjour <strong>{{ command.user.firstname }} {{ command.user.lastname }}</strong>,<br /><br />
+        Il semblerait que votre paiement est échoué pour votre commande n°<strong>{{ command.reference }}</strong>,<br />
+        Une confirmation d'erreur vient de vous être envoyée par email à l'adresse <strong>{{ command.user.email }}</strong>.
+
+    </p>
+    <a href="{{ path('command') }}" class="btn btn-primary">Réessayer le paiement</a>
+
+{% endblock %}

@@ -1,0 +1,152 @@
+.navbar-item-custom, .navbar-item-custom a {
+    color:#FFFFFF;
+}
+.account-item
+{
+    background-color: #f1f2f6;
+    padding : 70px;
+}
+.account-item a{
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+}
+.account-item a:hover{
+    text-transform: uppercase;
+    color: #b45309;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/*---------------------------------menu deroule----------------------*/
+.nav-link dropdown-toggle{
+    padding-top: 30px;
+}
+#megamenu {
+    position: static;
+    z-index: 300;
+    left:0;
+
+
+}
+
+#megamenu .dropdown-menu {
+    z-index: 300;
+    width: 100%;
+    position: absolute;
+}
+#megamenu .dropdown-menu .container{
+    margin-top:-30px;
+    z-index: 300;
+    width: 1200px;
+}
+.megamenu {
+    position: static;
+    z-index: 300;
+    left:0;
+
+
+}
+
+.megamenu .dropdown-menu {
+    z-index: 300;
+    width: 100%;
+    position: absolute;
+}
+.megamenu .dropdown-menu .container{
+    margin-top:-30px;
+    z-index: 300;
+    width: 1200px;
+}
+
+/*-----------------------------------------------------*/
+#Yggdrasil {
+    background-image: url(../images/fd-test.jpg);
+    padding: 60px 0;
+
+}
+
+#Yggdrasil h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+#Yggdrasil .lead {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#Yggdrasil h1 {
+    margin-bottom: 30px;
+}
+.navbar-nav > .nav-item.active > a {
+    color: #000000;
+    text-decoration: underline overline #ffa45c;}
+.block-small{
+    max-width: 600px;
+    margin:0 auto;
+}
+
+@media (max-width: 990px) {
+.ftco-navbar-light {
+    background-color: #FFFFFF;
+}
+    .ftco-section bg-light{
+        margin-top: 0.4rem;
+        margin-bottom: 0.4rem;
+    }
+}
+.form-check{
+    padding: 20px 65px;
+    margin-top: 7px;
+    background-color: #f8f9fa;
+
+}
+.col-form-label{
+    font-weight: bold;
+}
+.order-summary{
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 22px;
+}
+@media (max-width: 720px) {
+    .navbar-brand{
+        font-size: 16px;
+    }
+
+    .navbar-expand-sm .navbar-nav .nav-link {
+        padding-left: 30px;
+    }
+
+
+}
+.pagination > li > a, .pagination > li > span{
+    color:black !Important;
+}
+.pagination > li > a
+{
+    background-color: white;
+    color: #ffa45c;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #ffa45c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+.pagination > .active > a
+{
+    color: white;
+    background-color: #ffa45c;
+    border: solid 1px #ffa45c;
+}
+.pagination > .active > a:hover
+{
+    background-color: #ffa45c;
+    border: solid 1px #ffa45c;
+}

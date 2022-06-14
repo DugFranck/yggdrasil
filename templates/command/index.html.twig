@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Yggdrasil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Je passe ma commande</h2>
+    <p>Choisissez vos préférences avant de passer votre commande sur l'atelier Yggrasil.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+
+            {% set formHtml %}
+                {{ form_start(form, {action:path('command_recap')}) }}
+                    {{ form_label(form.addresses,'Choisisez votre adresse de livraison') }}
+                    <a href="{{ path('account_address_add') }}"> Ajouter une nouvelle adresse</a>
+                {{ form_end(form) }}
+            {% endset %}
+            {{ formHtml|replace({ '[br]' : '<br />' })|raw }}
+
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="text-center">
+            <b>Récap de ma commande</b><br />
+                <p>Retrouvez le récapitulatif de vos produits</p>
+            </div>
+            <div class="order-summary">
+
+
+                {% for key,item in cart.items %}
+            <div class="row {% if key > 0  %}mt-2{% endif %}">
+                <div class="col-2">
+                    <img src="/uploads/{{ item.productDimensionStock.product.illustration }}" alt="{{ item.productDimensionStock.product.name }}" class="img-fluid" width="120px">
+
+                </div>
+                <div class="col-8 my-auto">
+                    <h5 class="mt-0 mb-0">{{ item.productDimensionStock.product.name }}</h5>
+                    <h4 class="mt-0 mb-0">{{ item.productDimensionStock.dimension }}</h4>
+                    <h6 class="mt-0 mb-0">{{ item.productDimensionStock.product.subtitle }}</h6>
+                </div>
+                <div class="col-2 my-auto">
+                    x {{ item.quantity }}
+                </div>
+            </div>
+
+            {% endfor %}
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

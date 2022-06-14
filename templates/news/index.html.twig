@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes nouvelles - l'Atelier Yggdrasil{% endblock %}
+
+{% block content %}
+    </div>
+    <div class="hero-wrap hero-bread" style="background-image: url({{ asset('assets/images/bando2.png') }});margin-top: -10px;">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="  {{ path('home') }}">Home</a></span> <span>News</span></p>
+                    <h1 class="mb-0 bread">Mes nouvelles</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container marketing">
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-lg-3 sidebar">
+                    <h3 class="sidebar-box-3">
+                        <h3 class="heading"> Categories</h3>
+                        {{ form(form) }}
+                </div>
+                <div class="col-md-8 col-lg-9 order-md-last">
+                    <div class="row">
+                        <!--debut for-->
+                        {% for news in news%}
+                            <div class="blog-entry align-self-stretch d-md-flex">
+
+                                {% include 'news/single_news.html.twig' %}
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {{ knp_pagination_render(news) }}
+                </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

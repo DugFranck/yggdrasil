@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande -Yggdrasil {% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <h1>Ma commande {{ command.reference }}</h1>
+
+        <a href="{{ path('account_command') }}">Retour</a>
+
+        <hr>
+    <strong>commande passée le : </strong>{{ command.createdAt|date('d/m/y') }}<br />
+    <strong>Référence de ma commande :</strong> <small>{{ command.reference }}</small><br />
+    <strong>Transporteur choisi :</strong> {{ command.carriername }}
+        <hr>
+    <strong>Détail : </strong>
+
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th scope="col">Produit</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix Unitaire</th>
+            <th scope="col">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in command.commandDetails %}
+
+        <tr>
+
+            <td>{{ product.product }}</td>
+            <td>x{{ product.quantity }}</td>
+            <td>{{ (product.price / 100)|number_format(2, ',','.') }} €</td>
+            <td>{{ (product.total / 100)|number_format(2, ',','.') }} €</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <strong>Sous-total : </strong> {{ (command.getTotal / 100)|number_format(2, ',','.') }} €<br />
+        <strong>livraison :</strong> {{ (command.priceSending / 100)|number_format(2, ',','.') }} €<br />
+        <strong>Total :</strong> {{ ((command.priceSending + command.getTotal)/100)|number_format(2, ',', '.') }} €
+    </div>
+
+{% endblock %}

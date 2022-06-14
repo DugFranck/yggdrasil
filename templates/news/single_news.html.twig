@@ -1,0 +1,15 @@
+
+
+        <a href="{{ path('news', {'slug' : news.slug}) }}" class="block-20" style="background-image:url('/uploads/{{ news.illustration }}');">
+        </a>
+        <div class="text d-block pl-md-4">
+            <div class="meta mb-3">
+                <h5 style="color: #fd7e14">{{ news.createdAt|date('Y-m-d H:i') }}</h5>
+
+
+            </div>
+            <h3 class="heading"><a href="#">{{ news.title }}</a></h3>
+            <p>{{ news.subTitle }}</p>
+            <p><a href="{{ path('new', {'slug' : news.slug}) }}" class="btn btn-primary py-2 px-3">Voir plus</a></p>
+        </div>
+

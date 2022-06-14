@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter - l'Atelier Yggdrasil{% endblock %}
+
+{% block content %}
+    {% for message in  app.flashes('notice')%}
+        <div class=" alert alert-info">{{ message }}</div>
+    {% endfor %}
+    <div class="col-md-8">
+        {{ form(form) }}
+    </div>
+    <div class="col-md-4">
+        <strong>L'Atelier Yggdrasil</strong>
+
+        <hr>
+        06 45 47 37 44<br />
+        La Croix Vernet, 63290 Châteldon<br />
+        latelier.yggdrasil@gmail.com
+
+    </div>
+{% endblock %}
